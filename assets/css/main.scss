@@ -1242,9 +1242,8 @@ a.partner-logo:hover {
 .landing-section--feature,
 .landing-section--highlight {
   position: relative;
-  width: 100%;
-  max-width: none;
-  padding: clamp(2rem, 5vw, 3.25rem) var(--landing-inline-padding);
+  padding-top: clamp(2rem, 5vw, 3.25rem);
+  padding-bottom: clamp(2rem, 5vw, 3.25rem);
   z-index: 0;
 }
 
@@ -1252,7 +1251,11 @@ a.partner-logo:hover {
 .landing-section--highlight::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
   z-index: -1;
 }
 
@@ -1910,6 +1913,22 @@ a.partner-logo:hover {
 
 .layout-full-width .site-main {
   padding: 0;
+}
+
+.content-align-center .site-main {
+  text-align: center;
+}
+
+.content-align-center .breadcrumbs ol,
+.content-align-center .landing-actions,
+.content-align-center .landing-section-actions {
+  justify-content: center;
+}
+
+.content-align-center .landing-section-header,
+.content-align-center .content-block--single {
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .page {

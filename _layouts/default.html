@@ -14,7 +14,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Lora:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   </head>
-  <body class="layout-{{ page.layout | default: 'page' }}">
+  {% assign content_alignment = site.theme_settings.content_alignment | default: "left" %}
+  {% unless content_alignment == "center" %}
+    {% assign content_alignment = "left" %}
+  {% endunless %}
+  <body class="layout-{{ page.layout | default: 'page' }} content-align-{{ content_alignment }}">
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="site-shell">
       {% include header.html %}

@@ -29,6 +29,8 @@ theme_settings:
   background_color: "#F4F6F3"
   surface_color: "#F1E4EC"
   border_color: "#D0D5DD"
+  # content_alignment options: "left", "center"
+  content_alignment: "left"
   table_banded_rows: true
   # block_separator_style options: "none", "line", "accent", "band"
   block_separator_style: "none"

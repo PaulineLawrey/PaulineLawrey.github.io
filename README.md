@@ -77,6 +77,8 @@ theme_settings:
   background_color: "#F4F6F3"
   surface_color: "#F1E4EC"
   border_color: "#D0D5DD"
+  # content_alignment options: "left", "center"
+  content_alignment: "left"
   table_banded_rows: true
   block_separator_style: "none"
   partner_logo_tile_background: "transparent"
@@ -101,6 +103,10 @@ The optional `project_logo` appears at the left of the shared site header. The h
 The optional `favicon` appears in the browser tab. Set `favicon: false` to omit the favicon link.
 
 The `markdown` and `kramdown` settings enable GitHub-flavoured Markdown features such as pipe tables and task lists.
+
+Set `theme_settings.content_alignment` to `left` or `center` to control how
+content is aligned within page, block, card, and full-width section containers.
+The default is `left`.
 
 ## Navigation
 
