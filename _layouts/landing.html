@@ -8,17 +8,6 @@ layout: default
 {% endif %}
 
 <article class="landing-page">
-  <header class="landing-topbar">
-    <div class="landing-topbar-inner">
-      <a class="landing-topbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-      <nav class="landing-topnav" aria-label="Main navigation">
-        {% for item in site.data.navigation %}
-          <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
-        {% endfor %}
-      </nav>
-    </div>
-  </header>
-
   {% assign hero = page.hero %}
   {% if hero %}
     {% assign hero_separator = landing_block_separators %}

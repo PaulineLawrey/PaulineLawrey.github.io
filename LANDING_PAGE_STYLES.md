@@ -2,7 +2,7 @@
 
 The `landing` layout is designed for research project websites that need a polished first page without requiring the author to make design decisions. Most content is edited in `index.md` front matter.
 
-Landing pages are full-width pages with their own top navigation. They do not use the sidebar layout. The top menu uses `_data/navigation.yml`, which is useful when a page exists in the site but is not represented as a section on the landing page.
+Landing pages are full-width pages and use the same shared header navigation as every other page. The menu uses `_data/navigation.yml`, which is useful when a page exists in the site but is not represented as a section on the landing page.
 
 Set the default separator behaviour in `_config.yml`:
 
@@ -178,8 +178,9 @@ Useful optional future settings would be:
 The layout generates these main classes:
 
 - `.landing-page`
-- `.landing-topbar`
-- `.landing-topnav`
+- `.site-header`
+- `.header-nav`
+- `.header-submenu`
 - `.landing-hero`
 - `.landing-hero-content`
 - `.landing-hero-media`

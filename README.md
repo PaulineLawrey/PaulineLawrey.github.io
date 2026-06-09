@@ -98,7 +98,7 @@ defaults:
 
 If your site uses the default JCU logo and favicon assets from this theme, the paths above will work through the remote theme. To use your own logos or favicon, add files to the consuming site's `assets/images/` folder and update the paths.
 
-The optional `project_logo` appears at the top of the sidebar. The JCU logo from `logo` appears at the bottom of the desktop sidebar and inside the small-screen burger menu.
+The optional `project_logo` appears at the left of the shared site header. The header navigation is used on every page and changes to a burger menu on smaller screens.
 
 The optional `favicon` appears in the browser tab. Set `favicon: false` to omit the favicon link.
 
@@ -123,6 +123,8 @@ Add `_data/navigation.yml` in the project site:
 ```
 
 If navigation is omitted, the theme falls back to a single Home link.
+Navigation supports two levels. Top-level items appear in the header and any
+`children` appear in a dropdown menu.
 
 ## Add a page
 

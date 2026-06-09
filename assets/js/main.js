@@ -41,26 +41,64 @@ document.querySelectorAll(".prose h1[id], .prose h2[id], .prose h3[id], .prose h
   heading.append(anchor);
 });
 
-const sidebar = document.querySelector(".site-sidebar");
-const menuToggle = document.querySelector(".menu-toggle");
-const siteNav = document.querySelector("#site-nav");
+const siteHeader = document.querySelector(".site-header");
+const headerMenuToggle = document.querySelector(".header-menu-toggle");
+const headerNav = document.querySelector("#header-nav");
+const submenuToggles = Array.from(document.querySelectorAll(".header-submenu-toggle"));
 
-if (sidebar && menuToggle && siteNav) {
+if (siteHeader && headerMenuToggle && headerNav) {
+  const closeSubmenus = (exceptGroup = null) => {
+    document.querySelectorAll(".header-nav-group.is-submenu-open").forEach((group) => {
+      if (group !== exceptGroup) {
+        group.classList.remove("is-submenu-open");
+        group.querySelector(".header-submenu-toggle")?.setAttribute("aria-expanded", "false");
+      }
+    });
+  };
+
   const setMenuOpen = (isOpen) => {
-    sidebar.classList.toggle("is-menu-open", isOpen);
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    siteHeader.classList.toggle("is-menu-open", isOpen);
+    headerMenuToggle.setAttribute("aria-expanded", String(isOpen));
+
+    if (!isOpen) {
+      closeSubmenus();
+    }
   };
 
   setMenuOpen(false);
 
-  menuToggle.addEventListener("click", () => {
-    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-    setMenuOpen(!isOpen);
+  headerMenuToggle.addEventListener("click", () => {
+    setMenuOpen(headerMenuToggle.getAttribute("aria-expanded") !== "true");
   });
 
-  siteNav.addEventListener("click", (event) => {
+  submenuToggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const group = toggle.closest(".header-nav-group");
+      const isOpen = group.classList.contains("is-submenu-open");
+
+      closeSubmenus(group);
+      group.classList.toggle("is-submenu-open", !isOpen);
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+    });
+  });
+
+  headerNav.addEventListener("click", (event) => {
     if (event.target.closest("a")) {
       setMenuOpen(false);
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!siteHeader.contains(event.target)) {
+      closeSubmenus();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeSubmenus();
+      setMenuOpen(false);
+      headerMenuToggle.focus();
     }
   });
 }
