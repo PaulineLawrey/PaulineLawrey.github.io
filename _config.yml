@@ -18,18 +18,16 @@ theme_settings:
   # Optional project-logo-specific overrides. Leave commented to use the sidebar logo tile settings above.
   sidebar_project_logo_tile_background: "#transparent"
   sidebar_project_logo_tile_border_color: "transparent"
-  font_family: "Open Sans, sans-serif"
-  heading_font_family: "Open Sans, sans-serif"
-  primary_color: "#005EB8"
-  secondary_color: "#00A3B4"
-  accent_color: "#EBB71F"
+  font_family: "Lato, Arial, Helvetica, sans-serif"
+  heading_font_family: "Lora, Georgia, serif"
+  primary_color: "#354F52"
+  secondary_color: "#C3D5C7"
+  accent_color: "#86466E"
   text_color: "#344054"
   heading_color: "#344054"
   muted_text_color: "#667085"
-  background_color: "#FFFFFF"
-  surface_color: "#FFFFFF"
-  secondary_background_color: "#DCDAC3"
-  secondary_background_opacity: "0.5"
+  background_color: "#F4F6F3"
+  surface_color: "#F1E4EC"
   border_color: "#D0D5DD"
   table_banded_rows: true
   # block_separator_style options: "none", "line", "accent", "band"
@@ -53,5 +51,5 @@ exclude:
   - LICENSE
   - Gemfile
   - Gemfile.lock
-  - LANDING_PAGE_STYLES.md
+  - FULL_WIDTH_PAGE_STYLES.md
   - README.md

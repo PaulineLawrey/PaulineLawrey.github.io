@@ -97,11 +97,6 @@ Alert boxes use `.jcu-alert` plus a type class.
 > Uses `.jcu-alert--note` for general information that users should take into account, even when skimming.
 {:.jcu-alert .jcu-alert--note}
 
-> **Tip**
->
-> Uses `.jcu-alert--tip` for optional information to help a user be more successful.
-{:.jcu-alert .jcu-alert--tip}
-
 > **Important**
 >
 > Uses `.jcu-alert--important` for crucial information necessary for users to succeed.

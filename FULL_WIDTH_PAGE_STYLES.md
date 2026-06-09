@@ -1,6 +1,6 @@
-# Landing page styles
+# Full-width page styles
 
-The `landing` layout is designed for research project websites that need a polished first page without requiring the author to make design decisions. Most content is edited in `index.md` front matter.
+The `full-width` layout is designed for research project websites that need a polished page without requiring the author to make design decisions. Most content is edited in page front matter.
 
 Landing pages are full-width pages and use the same shared header navigation as every other page. The menu uses `_data/navigation.yml`, which is useful when a page exists in the site but is not represented as a section on the landing page.
 
@@ -17,7 +17,7 @@ When `landing_block_separators` is `true`, landing blocks show separator bars un
 
 ```yml
 ---
-layout: landing
+layout: full-width
 title: Home
 permalink: /
 hero:
@@ -50,7 +50,7 @@ Use `landing_sections` for the main page areas. Recommended sections for researc
 - Partner organisations
 - Contact us
 
-Sections can contain text, an image, a link, or a set of cards.
+Sections can contain text, an image, a text link, up to two action buttons, or a set of cards.
 
 ```yml
 landing_sections:
@@ -61,10 +61,15 @@ landing_sections:
     image_alt: "Abstract research context image"
     content: |
       Explain the research problem, why it matters, and how the project responds.
-    link_text: "Read about the research"
-    link_url: "/research/"
+    actions:
+      - label: "Read about the research"
+        url: "/research/"
+      - label: "Meet the team"
+        url: "/people/"
     separator: true
 ```
+
+The optional `actions` list supports up to two buttons. The first uses the primary colour and the second uses the secondary colour. Use `link_text` and `link_url` instead when a section only needs a quiet text link.
 
 Set `separator: true` on any item in `landing_sections` to add an accent separator bar after that section.
 
@@ -142,28 +147,13 @@ partner_organisations:
       url: "https://www.jcu.edu.au/"
 ```
 
-## Contact call to action
-
-```yml
-contact_cta:
-  title: "Contact us"
-  separator: true
-  content: |
-    Add a clear route for enquiries.
-  link_text: "Get in touch"
-  link_url: "/contact/"
-```
-
-Set `contact_cta.separator: true` or `partner_organisations.separator: true` to add the same accent separator after those blocks.
-
 ## Style options
 
 The layout uses the existing theme colours:
 
-- `primary_color` for hero headings, buttons, links, and highlight sections
-- `secondary_color` for achievement icons and supporting emphasis
+- `primary_color` for hero headings, primary buttons, links, highlight sections, and achievement icons
+- `secondary_color` for feature bands, coloured content-block backgrounds, secondary buttons, and supporting emphasis
 - `accent_color` for structural emphasis
-- `secondary_background_color` plus `secondary_background_opacity` for pale feature bands
 - `surface_color` and `border_color` for cards and callouts
 
 Useful optional future settings would be:
@@ -198,6 +188,6 @@ The layout generates these main classes:
 - `.landing-carousel`
 - `.landing-carousel-slide`
 - `.landing-partners`
-- `.landing-contact`
+- `.landing-section-actions`
 
 Researchers usually should not need to edit these classes. Change content in front matter first, and only edit CSS for project-specific design requirements.

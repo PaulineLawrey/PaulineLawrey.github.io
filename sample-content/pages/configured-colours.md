@@ -8,7 +8,7 @@ summary: "A visual reference for the colour settings configured in this theme."
 
 This page shows the colour values currently configured in `_config.yml`.
 
-{% assign colours = "primary_color:Primary colour:#005EB8,secondary_color:Secondary colour:#00857A,accent_color:Accent colour:#F6C643,text_color:Text colour:#344054,heading_color:Heading colour:#344054,muted_text_color:Muted text colour:#667085,background_color:Background colour:#FFFFFF,surface_color:Surface colour:#F8FAFC,secondary_background_color:Secondary background colour:#DCDAC3,border_color:Border colour:#D0D5DD" | split: "," %}
+{% assign colours = "primary_color:Primary colour:#354F52,secondary_color:Secondary colour:#C3D5C7,accent_color:Accent colour:#86466E,text_color:Text colour:#344054,heading_color:Heading colour:#344054,muted_text_color:Muted text colour:#667085,background_color:Background colour:#F4F6F3,surface_color:Surface colour:#F1E4EC,border_color:Border colour:#D0D5DD" | split: "," %}
 
 <div class="colour-samples">
   {% for colour_item in colours %}
@@ -18,10 +18,6 @@ This page shows the colour values currently configured in `_config.yml`.
     {% assign colour_default = colour_parts[2] %}
     {% assign colour_value = site.theme_settings[colour_key] | default: colour_default %}
     {% assign swatch_style = "background-color: " | append: colour_value | append: ";" %}
-    {% if colour_key == "secondary_background_color" %}
-      {% assign secondary_background_opacity = site.theme_settings.secondary_background_opacity | default: "0.5" %}
-      {% assign swatch_style = swatch_style | append: " opacity: " | append: secondary_background_opacity | append: ";" %}
-    {% endif %}
     <article class="colour-sample">
       <div class="colour-swatch" style="{{ swatch_style }}"></div>
       <div class="colour-sample-body">
@@ -31,10 +27,6 @@ This page shows the colour values currently configured in `_config.yml`.
           <dd><code>{{ colour_key }}</code></dd>
           <dt>Value</dt>
           <dd><code>{{ colour_value }}</code></dd>
-          {% if colour_key == "secondary_background_color" %}
-            <dt>Opacity setting</dt>
-            <dd><code>secondary_background_opacity: {{ secondary_background_opacity }}</code></dd>
-          {% endif %}
         </dl>
         <p style="color: {{ colour_value }};">Example text using {{ colour_label | downcase }}.</p>
       </div>
@@ -44,13 +36,12 @@ This page shows the colour values currently configured in `_config.yml`.
 
 ## How these colours are used
 
-- **Primary colour** is used for the sidebar background, page titles, standard links, breadcrumb links, page-card headings, Note alerts, and the hover state for heading permalink icons.
-- **Secondary colour** is used for link hover states, heading permalink icons, Tip alerts, Markdown table header backgrounds, and the muted internal lines and banded rows in Markdown tables.
+- **Primary colour** is used for the shared header background, page titles, standard links, breadcrumb links, page-card headings, Note alerts, and the hover state for heading permalink icons.
+- **Secondary colour** is used for feature bands, coloured content-block backgrounds, link hover states, heading permalink icons, Markdown table header backgrounds, and the muted internal lines and banded rows in Markdown tables.
 - **Accent colour** is used for page title underline rules, active navigation markers, accent block separators, Warning alerts, and `.jcu-block--accent` lines.
 - **Text colour** is used for standard body text, list text, and skip-link backgrounds.
 - **Heading colour** is used for most headings, definition-list terms, alert labels, and card or panel headings.
 - **Muted text colour** is used for breadcrumbs, supporting text, captions, card summaries, and less prominent labels.
 - **Background colour** is used for the main page panel and skip-link text.
 - **Surface colour** is used for card-style blocks, page cards, colour sample cards, column panels, generated gallery tiles, and other quiet UI surfaces.
-- **Secondary background colour** is used for pale highlighted sections such as `.jcu-block--coloured-bkgnd`, secondary front matter content blocks, and the band block separator style.
 - **Border colour** is used for panel borders, card borders, content block separators, colour sample dividers, and subtle structural lines.

@@ -1,9 +1,8 @@
 ---
-layout: landing
+layout: full-width
 title: Home
 permalink: /
 hero:
-  eyebrow: "JCU research website theme"
   title: "A clearer way to publish research project websites"
   lead: "A JCU-themed Jekyll theme for research teams who need attractive, maintainable, GitHub Pages-ready project websites edited in Markdown."
   image: "/assets/sample-images/gallery-background.svg"
@@ -96,13 +95,15 @@ landing_sections:
       The theme keeps presentation details in layouts, includes, CSS, and configuration so researchers can focus on writing clear content. Sites can start from sample content, then delete what they do not need.
     link_text: "Read the documentation"
     link_url: "https://github.com/jcu-eresearch/jcu-research-website-theme"
-contact_cta:
-  eyebrow: "Next step"
-  title: "Start with the sample content"
-  content: |
-    Explore the sample pages to see the available styles, then use the starter repository to create a project website.
-  link_text: "Browse samples"
-  link_url: "/sample-content/"
+  - title: "Start with the sample content"
+    eyebrow: "Next step"
+    content: |
+      Explore the sample pages to see the available styles, then use the starter repository to create a project website.
+    actions:
+      - label: "Browse samples"
+        url: "/sample-content/"
+      - label: "View starter repository"
+        url: "https://github.com/jcu-eresearch/jcu-research-website-starter"
 partner_organisations:
   eyebrow: "Institution"
   title: "Partner organisations"

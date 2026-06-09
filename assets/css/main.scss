@@ -2,18 +2,16 @@
 ---
 
 :root {
-  --font-body: {{ site.theme_settings.font_family | default: "Inter, Arial, Helvetica, sans-serif" }};
-  --font-heading: {{ site.theme_settings.heading_font_family | default: "Inter, Arial, Helvetica, sans-serif" }};
-  --color-primary: {{ site.theme_settings.primary_color | default: "#005EB8" }};
-  --color-secondary: {{ site.theme_settings.secondary_color | default: "#00857A" }};
-  --color-accent: {{ site.theme_settings.accent_color | default: "#F6C643" }};
+  --font-body: {{ site.theme_settings.font_family | default: "Lato, Arial, Helvetica, sans-serif" }};
+  --font-heading: {{ site.theme_settings.heading_font_family | default: "Lora, Georgia, serif" }};
+  --color-primary: {{ site.theme_settings.primary_color | default: "#354F52" }};
+  --color-secondary: {{ site.theme_settings.secondary_color | default: "#C3D5C7" }};
+  --color-accent: {{ site.theme_settings.accent_color | default: "#86466E" }};
   --color-text: {{ site.theme_settings.text_color | default: "#344054" }};
   --color-heading: {{ site.theme_settings.heading_color | default: site.theme_settings.text_color | default: "#344054" }};
   --color-muted: {{ site.theme_settings.muted_text_color | default: "#667085" }};
-  --color-bg: {{ site.theme_settings.background_color | default: "#FFFFFF" }};
-  --color-surface: {{ site.theme_settings.surface_color | default: "#F8FAFC" }};
-  --color-secondary-bg: {{ site.theme_settings.secondary_background_color | default: "#DCDAC3" }};
-  --color-secondary-bg-opacity: {{ site.theme_settings.secondary_background_opacity | default: "0.5" }};
+  --color-bg: {{ site.theme_settings.background_color | default: "#F4F6F3" }};
+  --color-surface: {{ site.theme_settings.surface_color | default: "#F1E4EC" }};
   --color-border: {{ site.theme_settings.border_color | default: "#D0D5DD" }};
   --sidebar-logo-tile-bg: {{ site.theme_settings.sidebar_logo_tile_background | default: "#FFFFFF" }};
   --sidebar-logo-tile-border: {{ site.theme_settings.sidebar_logo_tile_border_color | default: "rgba(255, 255, 255, 0.45)" }};
@@ -384,8 +382,7 @@ h3 {
   content: "";
   position: absolute;
   z-index: -1;
-  background: var(--color-secondary-bg);
-  opacity: var(--color-secondary-bg-opacity);
+  background: var(--color-secondary);
   border-radius: 0.5rem;
 }
 
@@ -433,7 +430,7 @@ h3 {
 }
 
 .block-separators--band .content-block--bg-secondary {
-  background: var(--color-secondary-bg);
+  background: var(--color-secondary);
 }
 
 .block-separators--none .content-block + .content-block {
@@ -484,7 +481,8 @@ h3 {
 }
 
 .prose thead th {
-  color: #fff;
+  color: var(--color-text);
+  color: contrast-color(var(--color-secondary));
   background: var(--color-secondary);
   font-weight: 800;
 }
@@ -664,10 +662,6 @@ h3 {
   --jcu-alert-color: var(--color-primary);
 }
 
-.jcu-alert--tip {
-  --jcu-alert-color: var(--color-secondary);
-}
-
 .jcu-alert--important {
   --jcu-alert-color: #7a3db8;
 }
@@ -718,8 +712,7 @@ h3 {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--color-secondary-bg);
-  opacity: var(--color-secondary-bg-opacity);
+  background: var(--color-secondary);
   border-radius: 0;
 }
 
@@ -1076,16 +1069,16 @@ a.partner-logo:hover {
   aspect-ratio: auto;
 }
 
-.layout-landing .site-shell {
+.layout-full-width .site-shell {
   display: block;
   background: var(--color-bg);
 }
 
-.layout-landing .site-sidebar {
+.layout-full-width .site-sidebar {
   display: none;
 }
 
-.layout-landing .site-main {
+.layout-full-width .site-main {
   width: 100%;
   padding: 0;
   background: var(--color-bg);
@@ -1181,14 +1174,30 @@ a.partner-logo:hover {
 }
 
 .landing-button--primary {
-  color: #fff;
+  color: var(--color-text);
+  color: contrast-color(var(--color-primary));
   background: var(--color-primary);
   border-color: var(--color-primary);
 }
 
 .landing-button--primary:hover {
-  color: #fff;
+  color: var(--color-text);
+  color: contrast-color(color-mix(in srgb, var(--color-primary) 86%, #000));
   background: color-mix(in srgb, var(--color-primary) 86%, #000);
+}
+
+.landing-button--secondary {
+  color: var(--color-text);
+  color: contrast-color(var(--color-secondary));
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.landing-button--secondary:hover {
+  color: var(--color-text);
+  color: contrast-color(color-mix(in srgb, var(--color-secondary) 86%, #000));
+  background: color-mix(in srgb, var(--color-secondary) 86%, #000);
+  border-color: color-mix(in srgb, var(--color-secondary) 86%, #000);
 }
 
 .landing-section {
@@ -1248,8 +1257,7 @@ a.partner-logo:hover {
 }
 
 .landing-section--feature::before {
-  background: var(--color-secondary-bg);
-  opacity: var(--color-secondary-bg-opacity);
+  background: var(--color-secondary);
 }
 
 .landing-section--highlight::before {
@@ -1261,16 +1269,19 @@ a.partner-logo:hover {
 .landing-section--highlight .eyebrow,
 .landing-section--highlight p,
 .landing-section--highlight li {
-  color: #fff;
+  color: var(--color-text);
+  color: contrast-color(var(--color-primary));
 }
 
 .landing-section--highlight a {
-  color: #fff;
+  color: var(--color-text);
+  color: contrast-color(var(--color-primary));
   text-decoration-color: var(--color-accent);
 }
 
 .landing-section--highlight a:hover {
-  color: var(--color-accent);
+  color: var(--color-text);
+  color: contrast-color(var(--color-primary));
 }
 
 .landing-section--feature + .landing-section--feature,
@@ -1303,6 +1314,22 @@ a.partner-logo:hover {
   margin-top: 1rem;
   color: var(--color-primary);
   font-weight: 800;
+}
+
+.landing-section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.landing-section-actions .landing-button {
+  min-width: 9rem;
+  border-radius: 999px;
+}
+
+.landing-section--highlight .landing-section-actions .landing-button {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-surface) 70%, transparent);
 }
 
 .landing-card-grid,
@@ -1354,19 +1381,20 @@ a.partner-logo:hover {
   gap: 0.55rem;
 }
 
-.landing-achievement img,
 .landing-achievement-icon {
   width: 3rem;
   height: 3rem;
   display: grid;
   place-items: center;
-  color: #fff;
-  background: var(--color-secondary);
-  border-radius: 0.35rem;
+  color: var(--color-primary);
+  background: transparent;
   font-weight: 900;
 }
 
 .landing-achievement img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.35rem;
   object-fit: cover;
 }
 
@@ -1374,21 +1402,6 @@ a.partner-logo:hover {
   color: var(--color-primary);
   font-size: 2rem;
   line-height: 1;
-}
-
-.landing-contact {
-  width: min(calc(100% - (var(--landing-inline-padding) * 2)), var(--content-width));
-  margin-right: auto;
-  margin-left: auto;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-left: 0.35rem solid var(--color-accent);
-  border-radius: 0.5rem;
 }
 
 .landing-carousel-frame {
@@ -1452,7 +1465,8 @@ a.partner-logo:hover {
 
 .landing-carousel-controls button:hover,
 .landing-carousel-controls button[aria-current="true"] {
-  color: #fff;
+  color: var(--color-text);
+  color: contrast-color(var(--color-primary));
   background: var(--color-primary);
   border-color: var(--color-primary);
 }
@@ -1581,7 +1595,7 @@ a.partner-logo:hover {
     padding: 2rem var(--site-main-inline-padding) 3rem;
   }
 
-  .layout-landing .site-main {
+  .layout-full-width .site-main {
     padding: 0;
   }
 
@@ -1636,11 +1650,6 @@ a.partner-logo:hover {
   .landing-card-grid,
   .landing-achievement-grid {
     grid-template-columns: 1fr;
-  }
-
-  .landing-contact {
-    display: grid;
-    padding: 1.5rem;
   }
 
   h1 {
@@ -1707,20 +1716,28 @@ a.partner-logo:hover {
 
 /* Shared header navigation */
 .site-shell,
-.layout-landing .site-shell {
+.layout-full-width .site-shell {
   min-height: 100vh;
   display: block;
   background: var(--color-bg);
 }
 
 .site-header {
+  --header-text-color: var(--color-text);
   position: sticky;
   top: 0;
   z-index: 20;
   padding: 0.75rem var(--site-main-inline-padding);
-  background: color-mix(in srgb, var(--color-bg) 96%, transparent);
-  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-body);
+  background: var(--color-primary);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 55%, var(--color-primary));
   backdrop-filter: blur(10px);
+}
+
+@supports (color: contrast-color(red)) {
+  .site-header {
+    --header-text-color: contrast-color(var(--color-primary));
+  }
 }
 
 .site-header-inner {
@@ -1738,15 +1755,15 @@ a.partner-logo:hover {
   display: flex;
   gap: 0.75rem;
   align-items: center;
-  color: var(--color-primary);
-  font-family: var(--font-heading);
+  color: var(--header-text-color);
+  font-family: var(--font-body);
   font-weight: 900;
   line-height: 1.2;
   text-decoration: none;
 }
 
 .site-header-brand:hover {
-  color: var(--color-secondary);
+  color: var(--color-accent);
 }
 
 .site-header-brand img {
@@ -1782,9 +1799,12 @@ a.partner-logo:hover {
 
 .header-nav-link,
 .header-submenu a {
-  color: var(--color-text);
   font-weight: 800;
   text-decoration: none;
+}
+
+.header-nav-link {
+  color: var(--header-text-color);
 }
 
 .header-nav-link {
@@ -1804,8 +1824,8 @@ a.partner-logo:hover {
 .header-nav-link:hover,
 .header-nav-link[aria-current="page"],
 .header-nav-group.is-active > .header-nav-parent .header-nav-link {
-  color: var(--color-primary);
-  background: var(--color-surface);
+  color: var(--header-text-color);
+  background: color-mix(in srgb, var(--color-surface) 55%, transparent);
 }
 
 .header-nav-link[aria-current="page"],
@@ -1819,7 +1839,7 @@ a.partner-logo:hover {
   display: grid;
   place-items: center;
   padding: 0;
-  color: var(--color-text);
+  color: var(--header-text-color);
   background: transparent;
   border: 0;
   border-radius: 0 0.35rem 0.35rem 0;
@@ -1838,8 +1858,8 @@ a.partner-logo:hover {
 .header-submenu-toggle:hover,
 .header-submenu-toggle:focus-visible,
 .header-nav-group.is-active > .header-nav-parent .header-submenu-toggle {
-  color: var(--color-primary);
-  background: var(--color-surface);
+  color: var(--header-text-color);
+  background: color-mix(in srgb, var(--color-surface) 55%, transparent);
 }
 
 .header-submenu {
@@ -1858,6 +1878,7 @@ a.partner-logo:hover {
 .header-submenu a {
   display: block;
   padding: 0.65rem 0.75rem;
+  color: var(--color-text);
   border-radius: 0.25rem;
   font-size: 0.9rem;
 }
@@ -1879,7 +1900,7 @@ a.partner-logo:hover {
 }
 
 .site-main,
-.layout-landing .site-main {
+.layout-full-width .site-main {
   width: 100%;
   min-width: 0;
   margin: 0 auto;
@@ -1887,7 +1908,7 @@ a.partner-logo:hover {
   background: var(--color-bg);
 }
 
-.layout-landing .site-main {
+.layout-full-width .site-main {
   padding: 0;
 }
 
@@ -1909,9 +1930,9 @@ a.partner-logo:hover {
     gap: 0.5rem;
     min-height: 2.75rem;
     padding: 0.6rem 0.75rem;
-    color: var(--color-primary);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    color: var(--header-text-color);
+    background: color-mix(in srgb, var(--color-surface) 55%, transparent);
+    border: 1px solid color-mix(in srgb, var(--header-text-color) 30%, transparent);
     border-radius: 0.35rem;
     font: inherit;
     font-weight: 800;
@@ -1938,7 +1959,7 @@ a.partner-logo:hover {
     align-items: stretch;
     flex-direction: column;
     padding-top: 0.5rem;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid color-mix(in srgb, var(--header-text-color) 30%, transparent);
   }
 
   .site-header.is-menu-open .header-nav {
@@ -1964,7 +1985,7 @@ a.partner-logo:hover {
     padding: 0 0 0 0.75rem;
     background: transparent;
     border: 0;
-    border-left: 2px solid var(--color-border);
+    border-left: 2px solid color-mix(in srgb, var(--header-text-color) 35%, transparent);
     border-radius: 0;
     box-shadow: none;
   }

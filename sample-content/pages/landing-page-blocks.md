@@ -1,13 +1,13 @@
 ---
-layout: landing
+layout: full-width
 title: Landing page blocks
 permalink: /sample-content/landing-page-blocks/
 order: 5
 image: "/assets/sample-images/gallery-background.svg"
-summary: "Examples of each block and style available in the full-width landing page layout."
+summary: "Examples of each block and style available in the full-width page layout."
 content_separator: true
 hero:
-  eyebrow: "Landing layout sample"
+  eyebrow: "Full-width layout sample"
   title: "Landing page blocks"
   lead: "Use this page to see each landing page section style and understand which front matter fields are optional."
   image: "/assets/sample-images/gallery-background.svg"
@@ -56,7 +56,7 @@ landing_sections:
 
       Required: `title`.
 
-      Optional: `id`, `eyebrow`, `content`, `link_text`, `link_url`, `image`, `image_alt`, `image_position`, `cards`, `style`, and `separator`.
+      Optional: `id`, `eyebrow`, `content`, `link_text`, `link_url`, `actions`, `image`, `image_alt`, `image_position`, `cards`, `style`, and `separator`.
     link_text: "Example text link"
     link_url: "#"
   - title: "Section with image"
@@ -80,7 +80,7 @@ landing_sections:
     image: "/assets/sample-images/card-tree-kangaroo.svg"
     image_alt: "Abstract feature image"
     content: |
-      Use `style: "feature"` for a full-width pale background band. It uses `secondary_background_color` and `secondary_background_opacity` from `_config.yml`.
+      Use `style: "feature"` for a full-width pale background band. It uses `secondary_color` from `_config.yml`.
 
       Good for project summaries, research focus areas, or sections that need gentle emphasis.
   - title: "Highlight band"
@@ -125,13 +125,15 @@ landing_sections:
         text: "Keep card text short so the landing page remains easy to scan."
         link_text: "View activity"
         url: "#"
-contact_cta:
-  eyebrow: "Contact CTA"
-  title: "Contact call to action"
-  content: |
-    Use `contact_cta` near the end of the page to give visitors a clear next step. `eyebrow`, `content`, `link_text`, `link_url`, and `separator` are optional, but the block works best with a link.
-  link_text: "Contact us"
-  link_url: "/contact/"
+  - title: "Section with action buttons"
+    eyebrow: "Actions"
+    content: |
+      Add up to two optional `actions` to any landing section. The first action uses the primary colour and the second uses the secondary colour.
+    actions:
+      - label: "Contact us"
+        url: "/contact/"
+      - label: "Browse samples"
+        url: "/sample-content/"
 partner_organisations:
   eyebrow: "Partners"
   title: "Partner organisations block"
@@ -151,8 +153,8 @@ partner_organisations:
 
 ## How to use landing page blocks
 
-Create a page with `layout: landing`, then add the front matter groups you need. You can omit whole groups if a landing page does not need them.
+Create a page with `layout: full-width`, then add the front matter groups you need. You can omit whole groups if a full-width page does not need them.
 
-The main groups are `hero`, `achievements`, `carousel`, `landing_sections`, `contact_cta`, and `partner_organisations`.
+The main groups are `hero`, `achievements`, `carousel`, `landing_sections`, and `partner_organisations`.
 
 The only group most landing pages should always have is `hero`. Everything else is optional and can be added as the project grows.

@@ -40,7 +40,6 @@ layout: default
   {% else %}
     <header class="landing-hero landing-hero--simple{% if landing_block_separators %} landing-block--separator{% endif %}">
       <div class="landing-hero-content">
-        <p class="eyebrow">{{ site.title }}</p>
         <h1>{{ page.title }}</h1>
         {% if page.lead %}
           <p class="landing-hero-lead">{{ page.lead }}</p>
@@ -153,6 +152,13 @@ layout: default
         {% if section.link_url and section.link_text %}
           <a class="landing-text-link" href="{{ section.link_url | relative_url }}">{{ section.link_text }}</a>
         {% endif %}
+        {% if section.actions %}
+          <div class="landing-section-actions">
+            {% for action in section.actions limit: 2 %}
+              <a class="landing-button{% if forloop.first %} landing-button--primary{% else %} landing-button--secondary{% endif %}" href="{{ action.url | relative_url }}">{{ action.label }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
 
       {% if section.image %}
@@ -183,27 +189,6 @@ layout: default
       {% endif %}
     </section>
   {% endfor %}
-
-  {% if page.contact_cta %}
-    {% assign contact_separator = landing_block_separators %}
-    {% unless page.contact_cta.separator == nil %}
-      {% assign contact_separator = page.contact_cta.separator %}
-    {% endunless %}
-    <section class="landing-section landing-contact{% if contact_separator %} landing-block--separator{% endif %}">
-      <div>
-        <p class="eyebrow">{{ page.contact_cta.eyebrow | default: "Contact" }}</p>
-        <h2>{{ page.contact_cta.title | default: "Contact us" }}</h2>
-        {% if page.contact_cta.content %}
-          <div class="prose">
-            {{ page.contact_cta.content | markdownify }}
-          </div>
-        {% endif %}
-      </div>
-      {% if page.contact_cta.link_url and page.contact_cta.link_text %}
-        <a class="landing-button landing-button--primary" href="{{ page.contact_cta.link_url | relative_url }}">{{ page.contact_cta.link_text }}</a>
-      {% endif %}
-    </section>
-  {% endif %}
 
   {% if page.partner_organisations %}
     {% assign partners_separator = landing_block_separators %}
