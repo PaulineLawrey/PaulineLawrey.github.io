@@ -8,7 +8,7 @@ summary: "Examples of content blocks written directly in the Markdown page body.
 
 This page demonstrates content blocks written inline with the rest of the page content. The class line after each block keeps the authoring pattern short while still allowing Markdown inside the block.
 
-> ## Background colour ribbon
+> ### Background colour ribbon
 >
 > This block uses `.jcu-block` and `.jcu-block--coloured-bkgnd` for a full-width pale secondary background.
 >
@@ -18,6 +18,11 @@ This page demonstrates content blocks written inline with the rest of the page c
 > - Keep using Markdown for the content.
 > - Add the class line directly underneath the block.
 {:.jcu-block .jcu-block--coloured-bkgnd}
+
+> ![Abstract project setting image]({{ "/assets/sample-images/card-cassowary.svg" | relative_url }})
+> ### Block with image left
+> The image is floated to the left of the text. Add the image as the first line inside the block and include `.jcu-block--image-left` in the class line.
+{:.jcu-block .jcu-block--image-left}
 
 This paragraph sits between two inline blocks, so authors can mix normal page content and styled sections in the order they want readers to encounter them.
 
@@ -37,34 +42,31 @@ The card style can also be combined with the secondary block style when the sect
 
 The same card block can include an image and the image can be floated to the left or right. Add the image as the first line inside the block and include `.jcu-block--image-left` or `.jcu-block--image-right` in the class line.
 
-## Card blocks with accent and image
+## Card blocks with image
 
 > ![Abstract project setting image]({{ "/assets/sample-images/card-project-setting.svg" | relative_url }})
 >
-> ### Card block with accent and image
+> ### Card block image at top
 >
-> This block uses `.jcu-block`, `.jcu-block--card`, and `.jcu-block--accent`. The image is written as a normal Markdown image inside the block.
-{:.jcu-block .jcu-block--card .jcu-block--accent}
-
-Use `.jcu-block--image-left` to place the image on the left.
+> This block uses `.jcu-block` and `.jcu-block--card``. The image is written as a normal Markdown image inside the block.
+{:.jcu-block .jcu-block--card}
 
 > ![Abstract project setting image]({{ "/assets/sample-images/card-project-setting.svg" | relative_url }})
 >
-> ### Card block with accent and image to the left
+> ### Card block, image to the left
 >
 > This block adds `.jcu-block--image-left` to float the first image to the left of the Markdown content.
 >
 > The image stacks above the text on smaller screens.
-{:.jcu-block .jcu-block--card .jcu-block--accent .jcu-block--image-left}
-
-Use `.jcu-block--image-right` to place the image on the right instead.
+{:.jcu-block .jcu-block--card .jcu-block--image-left}
 
 > ![Abstract research context image]({{ "/assets/sample-images/card-research-context.svg" | relative_url }})
 >
-> ### Card block with accent and image to the right
+> ### Card block image to the right
 >
 > This version uses `.jcu-block--image-right` to float the first image to the right while the text starts on the left.
-{:.jcu-block .jcu-block--card .jcu-block--accent .jcu-block--image-right}
+{:.jcu-block .jcu-block--card .jcu-block--image-right}
+
 
 ## Inline partner logos
 

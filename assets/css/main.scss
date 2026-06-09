@@ -329,7 +329,7 @@ h2 {
 
 h3 {
   margin: 0 0 0.65rem;
-  font-size: 0.95rem;
+  font-size: 1.17rem;
 }
 
 .prose h1[id],
@@ -682,7 +682,7 @@ h3 {
 
 .jcu-block--card,
 .jcu-block--surface {
-  border-radius: 0.5rem;
+  border-radius: 0;
 }
 
 .jcu-block--card,
@@ -690,15 +690,16 @@ h3 {
   max-width: none;
   padding: 1.5rem;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: 0;
 }
 
 .jcu-block--coloured-bkgnd.jcu-block--card,
 .jcu-block--coloured-bkgnd.jcu-block--surface {
-  background: transparent;
-  border-color: transparent;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  width: auto;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 1.5rem;
+  background: var(--color-surface);
 }
 
 .jcu-block--coloured-bkgnd {
@@ -716,21 +717,15 @@ h3 {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: -1;
   background: var(--color-secondary-bg);
   opacity: var(--color-secondary-bg-opacity);
   border-radius: 0;
 }
 
-.jcu-block--coloured-bkgnd.jcu-block--card::after,
-.jcu-block--coloured-bkgnd.jcu-block--surface::after {
-  content: "";
-  position: absolute;
-  inset: 1.5rem max(0rem, calc(var(--site-main-inline-padding) - 1.5rem));
-  z-index: -1;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 0.5rem;
+.jcu-block--coloured-bkgnd.jcu-block--card::before,
+.jcu-block--coloured-bkgnd.jcu-block--surface::before {
+  inset: -1.5rem calc(var(--site-main-inline-padding) * -1);
 }
 
 .jcu-block--image-left::after,
@@ -760,7 +755,7 @@ h3 {
 
 .jcu-block--accent {
   padding-left: 1.25rem;
-  border-left: 0.25rem solid var(--color-accent);
+  border-left: 0.4rem solid var(--color-accent);
 }
 
 .jcu-block--coloured-bkgnd.jcu-block--accent,
