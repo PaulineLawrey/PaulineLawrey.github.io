@@ -1226,7 +1226,7 @@ a.partner-logo:hover {
 
 .landing-section--with-media {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(15rem, 36%);
+  grid-template-columns: 1fr 1fr;
   gap: clamp(1.25rem, 4vw, 2.5rem);
   align-items: center;
 }
