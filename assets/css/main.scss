@@ -23,7 +23,6 @@ $theme-on-secondary-color: if(lightness($theme-secondary-color) > 55%, $theme-te
   --sidebar-logo-tile-border: {{ site.theme_settings.sidebar_logo_tile_border_color | default: "rgba(255, 255, 255, 0.45)" }};
   --sidebar-project-logo-tile-bg: {{ site.theme_settings.sidebar_project_logo_tile_background | default: site.theme_settings.sidebar_logo_tile_background | default: "#FFFFFF" }};
   --sidebar-project-logo-tile-border: {{ site.theme_settings.sidebar_project_logo_tile_border_color | default: site.theme_settings.sidebar_logo_tile_border_color | default: "rgba(255, 255, 255, 0.45)" }};
-  --partner-logo-tile-bg: {{ site.theme_settings.partner_logo_tile_background | default: "#FFFFFF" }};
   --partner-logo-max-height: {{ site.theme_settings.partner_logo_max_height | default: "4rem" }};
   --partner-logo-max-items-per-row: {{ site.theme_settings.partner_logo_max_items_per_row | default: site.theme_settings.partner_logo_columns | default: 4 }};
   --image-gallery-max-items-per-row: {{ site.theme_settings.image_gallery_max_items_per_row | default: site.theme_settings.image_gallery_columns | default: 3 }};
@@ -556,9 +555,7 @@ h3 {
   min-width: 0;
   min-height: calc(var(--partner-logo-max-height) + 1rem);
   padding: 0.5rem;
-  background: var(--partner-logo-tile-bg);
   border: 0;
-  border-radius: 0.5rem;
 }
 
 .jcu-partner-logos > a {
@@ -981,9 +978,7 @@ p.jcu-image-gallery {
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
-  background: var(--partner-logo-tile-bg);
   border: 0;
-  border-radius: 0.5rem;
 }
 
 a.partner-logo {

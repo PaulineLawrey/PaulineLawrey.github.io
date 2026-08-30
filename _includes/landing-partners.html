@@ -14,29 +14,36 @@
   {% assign has_title = true %}
 {% endif %}
 
-<section class="landing-section landing-partners{% if block_separator %} landing-block--separator{% endif %}"{% if has_title %} aria-labelledby="{{ block_id }}"{% else %} aria-label="Partner organisations"{% endif %}>
-  <div class="landing-section-header">
-    <p class="eyebrow">{{ block.eyebrow | default: "Partners" }}</p>
-    {% if has_title %}
-      <h2 id="{{ block_id }}">{{ block.title }}</h2>
-    {% endif %}
-    {% if block.content %}
-      <div class="prose">
-        {{ block.content | markdownify }}
-      </div>
-    {% endif %}
-  </div>
-  <div class="partner-logos">
-    {% for partner in block.items %}
-      {% if partner.url %}
-        <a class="partner-logo" href="{{ partner.url }}" aria-label="{{ partner.name }}">
-          <img src="{{ partner.logo | relative_url }}" alt="{{ partner.name }}">
-        </a>
-      {% else %}
-        <div class="partner-logo">
-          <img src="{{ partner.logo | relative_url }}" alt="{{ partner.name }}">
+{% assign has_primary_background = false %}
+{% if block.background == "primary" %}
+  {% assign has_primary_background = true %}
+{% endif %}
+
+<section class="landing-section landing-partners{% if has_primary_background %} landing-section--highlight{% endif %}{% if block_separator %} landing-block--separator{% endif %}"{% if has_title %} aria-labelledby="{{ block_id }}"{% else %} aria-label="Partner organisations"{% endif %}>
+  <div class="landing-section-body">
+    <div class="landing-section-header">
+      <p class="eyebrow">{{ block.eyebrow | default: "Partners" }}</p>
+      {% if has_title %}
+        <h2 id="{{ block_id }}">{{ block.title }}</h2>
+      {% endif %}
+      {% if block.content %}
+        <div class="prose">
+          {{ block.content | markdownify }}
         </div>
       {% endif %}
-    {% endfor %}
+    </div>
+    <div class="partner-logos">
+      {% for partner in block.items %}
+        {% if partner.url %}
+          <a class="partner-logo" href="{{ partner.url }}" aria-label="{{ partner.name }}">
+            <img src="{{ partner.logo | relative_url }}" alt="{{ partner.name }}">
+          </a>
+        {% else %}
+          <div class="partner-logo">
+            <img src="{{ partner.logo | relative_url }}" alt="{{ partner.name }}">
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 </section>

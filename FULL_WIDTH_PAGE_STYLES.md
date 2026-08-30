@@ -146,11 +146,12 @@ blocks:
 
 Use `type: "partner-logos"` for funders, collaborators, and institutions. Its position in `blocks` determines where it is displayed.
 
-The `title` is optional. Omit it or set it to an empty string to hide the visible heading; the theme retains an accessible label for the section.
+The `title` is optional. Omit it or set it to an empty string to hide the visible heading; the theme retains an accessible label for the section. Set `background: "primary"` to place the block on a full-width primary-colour band with automatically contrasting text. Logo images have no tile background, allowing transparent monochrome logos to sit directly on the band.
 
 ```yml
 blocks:
   - type: "partner-logos"
+    background: "primary"
     title: ""
     content: |
       Recognise the organisations that make the project possible.

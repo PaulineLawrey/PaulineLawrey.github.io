@@ -145,6 +145,7 @@ blocks:
       - label: "Browse samples"
         url: "/sample-content/"
   - type: "partner-logos"
+    background: "primary"
     eyebrow: "Partners"
     title: ""
     content: |

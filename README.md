@@ -81,7 +81,6 @@ theme_settings:
   content_alignment: "left"
   table_banded_rows: true
   block_separator_style: "none"
-  partner_logo_tile_background: "transparent"
   partner_logo_max_height: "6rem"
   partner_logo_max_items_per_row: 3
   image_gallery_max_items_per_row: 3
@@ -320,7 +319,6 @@ Set logo defaults in `_config.yml`:
 
 ```yml
 theme_settings:
-  partner_logo_tile_background: "transparent"
   partner_logo_max_height: "6rem"
   partner_logo_max_items_per_row: 3
 ```
