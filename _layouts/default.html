@@ -13,6 +13,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Lora:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+    {% if page.layout == "jcudl-catalog" %}
+      {% assign jcudl_icon_stylesheet = page.jcudl_icon_stylesheet | default: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" %}
+      {% assign jcudl_stylesheet = page.jcudl_stylesheet | default: "/assets/css/jcudl-style.css" %}
+      <link href="{{ jcudl_icon_stylesheet }}" rel="stylesheet">
+      {% if jcudl_stylesheet contains "://" %}
+        <link rel="stylesheet" href="{{ jcudl_stylesheet }}">
+      {% else %}
+        <link rel="stylesheet" href="{{ jcudl_stylesheet | relative_url }}">
+      {% endif %}
+    {% endif %}
   </head>
   {% assign content_alignment = site.theme_settings.content_alignment | default: "left" %}
   {% unless content_alignment == "center" %}
@@ -27,5 +37,13 @@
       </main>
     </div>
     <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+    {% if page.layout == "jcudl-catalog" %}
+      {% assign jcudl_script = page.jcudl_script | default: "/assets/js/jcudl.js" %}
+      {% if jcudl_script contains "://" %}
+        <script src="{{ jcudl_script }}"></script>
+      {% else %}
+        <script src="{{ jcudl_script | relative_url }}"></script>
+      {% endif %}
+    {% endif %}
   </body>
 </html>
