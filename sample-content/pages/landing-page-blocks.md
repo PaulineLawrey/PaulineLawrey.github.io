@@ -146,9 +146,9 @@ blocks:
         url: "/sample-content/"
   - type: "partner-logos"
     eyebrow: "Partners"
-    title: "Partner organisations block"
+    title: ""
     content: |
-      Use `type: "partner-logos"` for funders, collaborators, institutions, and participating groups. Place it wherever it belongs in `blocks`.
+      Use `type: "partner-logos"` for funders, collaborators, institutions, and participating groups. The title is optional, and this example leaves it blank. Place the block wherever it belongs in `blocks`.
     items:
       - name: "James Cook University"
         logo: "/assets/images/jcu-logo-colour.svg"

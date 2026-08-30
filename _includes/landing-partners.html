@@ -9,10 +9,17 @@
   {% capture block_id %}landing-partners-{{ include.index }}{% endcapture %}
 {% endif %}
 
-<section class="landing-section landing-partners{% if block_separator %} landing-block--separator{% endif %}" aria-labelledby="{{ block_id }}">
+{% assign has_title = false %}
+{% if block.title and block.title != empty %}
+  {% assign has_title = true %}
+{% endif %}
+
+<section class="landing-section landing-partners{% if block_separator %} landing-block--separator{% endif %}"{% if has_title %} aria-labelledby="{{ block_id }}"{% else %} aria-label="Partner organisations"{% endif %}>
   <div class="landing-section-header">
     <p class="eyebrow">{{ block.eyebrow | default: "Partners" }}</p>
-    <h2 id="{{ block_id }}">{{ block.title | default: "Partner organisations" }}</h2>
+    {% if has_title %}
+      <h2 id="{{ block_id }}">{{ block.title }}</h2>
+    {% endif %}
     {% if block.content %}
       <div class="prose">
         {{ block.content | markdownify }}

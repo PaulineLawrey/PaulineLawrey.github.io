@@ -146,10 +146,12 @@ blocks:
 
 Use `type: "partner-logos"` for funders, collaborators, and institutions. Its position in `blocks` determines where it is displayed.
 
+The `title` is optional. Omit it or set it to an empty string to hide the visible heading; the theme retains an accessible label for the section.
+
 ```yml
 blocks:
   - type: "partner-logos"
-    title: "Partner organisations"
+    title: ""
     content: |
       Recognise the organisations that make the project possible.
     items:
