@@ -1,6 +1,12 @@
 ---
 ---
 
+$theme-text-color: {{ site.theme_settings.text_color | default: "#344054" }};
+$theme-primary-color: {{ site.theme_settings.primary_color | default: "#354F52" }};
+$theme-secondary-color: {{ site.theme_settings.secondary_color | default: "#C3D5C7" }};
+$theme-on-primary-color: if(lightness($theme-primary-color) > 55%, $theme-text-color, #fff);
+$theme-on-secondary-color: if(lightness($theme-secondary-color) > 55%, $theme-text-color, #fff);
+
 :root {
   --font-body: {{ site.theme_settings.font_family | default: "Lato, Arial, Helvetica, sans-serif" }};
   --font-heading: {{ site.theme_settings.heading_font_family | default: "Lora, Georgia, serif" }};
@@ -1267,23 +1273,43 @@ a.partner-logo:hover {
   background: var(--color-primary);
 }
 
-.landing-section--highlight h2,
-.landing-section--highlight h3,
-.landing-section--highlight .eyebrow,
-.landing-section--highlight p,
-.landing-section--highlight li {
-  color: var(--color-text);
+.landing-section--feature > .landing-section-body h2,
+.landing-section--feature > .landing-section-body h3,
+.landing-section--feature > .landing-section-body .eyebrow,
+.landing-section--feature > .landing-section-body p,
+.landing-section--feature > .landing-section-body li {
+  color: $theme-on-secondary-color;
+  color: contrast-color(var(--color-secondary));
+}
+
+.landing-section--feature > .landing-section-body a {
+  color: $theme-on-secondary-color;
+  color: contrast-color(var(--color-secondary));
+  text-decoration-color: var(--color-accent);
+}
+
+.landing-section--feature > .landing-section-body a:hover {
+  color: $theme-on-secondary-color;
+  color: contrast-color(var(--color-secondary));
+}
+
+.landing-section--highlight > .landing-section-body h2,
+.landing-section--highlight > .landing-section-body h3,
+.landing-section--highlight > .landing-section-body .eyebrow,
+.landing-section--highlight > .landing-section-body p,
+.landing-section--highlight > .landing-section-body li {
+  color: $theme-on-primary-color;
   color: contrast-color(var(--color-primary));
 }
 
-.landing-section--highlight a {
-  color: var(--color-text);
+.landing-section--highlight > .landing-section-body a {
+  color: $theme-on-primary-color;
   color: contrast-color(var(--color-primary));
   text-decoration-color: var(--color-accent);
 }
 
-.landing-section--highlight a:hover {
-  color: var(--color-text);
+.landing-section--highlight > .landing-section-body a:hover {
+  color: $theme-on-primary-color;
   color: contrast-color(var(--color-primary));
 }
 
