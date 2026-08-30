@@ -18,48 +18,55 @@ hero:
       url: "#standard-section"
     - label: "Read documentation"
       url: "https://github.com/jcu-eresearch/jcu-research-website-theme"
-achievements:
-  eyebrow: "Achievement tiles"
-  title: "Achievements block"
-  lead: "Use achievements for project metrics, major outputs, milestones, or key facts. `eyebrow`, `lead`, and `separator` are optional. Each item can use a `value`, an `icon`, or an `image`."
-  items:
-    - value: "24"
-      label: "Research outputs"
-      text: "Use `value` for numbers, dates, or short high-impact facts."
-    - icon: "A"
-      label: "Advisory groups"
-      text: "Use `icon` for a compact letter, symbol, or short visual marker."
-    - image: "/assets/sample-images/card-green-turtle.svg"
-      image_alt: "Green turtle"
-      label: "Field sites"
-      text: "Use `image` and `image_alt` when a small picture is more meaningful."
-carousel:
-  eyebrow: "Image carousel"
-  title: "Carousel block"
-  lead: "Use the carousel for fieldwork, project locations, lab work, community activities, or visual summaries. The carousel `eyebrow`, `title`, `lead`, `separator`, and slide `caption` fields are optional."
-  items:
-    - image: "/assets/sample-images/gallery-background.svg"
-      image_alt: "Abstract image representing a research landscape"
-      caption: "Slide captions are optional."
-    - image: "/assets/sample-images/gallery-about.svg"
-      image_alt: "Abstract image representing project information"
-      caption: "Add as many slides as the page needs."
-    - image: "/assets/sample-images/gallery-contact.svg"
-      image_alt: "Abstract image representing collaboration"
-      caption: "Always include useful image alt text."
-landing_sections:
-  - id: "standard-section"
+blocks:
+  - type: "achievements"
+    eyebrow: "Achievement tiles"
+    title: "Achievements block"
+    lead: "Use achievements for project metrics, major outputs, milestones, or key facts. `eyebrow`, `lead`, and `separator` are optional. Each item can use a `value`, an `icon`, or an `image`."
+    items:
+      - value: "24"
+        label: "Research outputs"
+        text: "Use `value` for numbers, dates, or short high-impact facts."
+      - icon: "A"
+        label: "Advisory groups"
+        text: "Use `icon` for a compact letter, symbol, or short visual marker."
+      - image: "/assets/sample-images/card-green-turtle.svg"
+        image_alt: "Green turtle"
+        label: "Field sites"
+        text: "Use `image` and `image_alt` when a small picture is more meaningful."
+  - type: "feature"
+    title: "Section before the carousel"
+    eyebrow: "Placement"
+    content: |
+      This `type: "feature"` block uses the configured secondary colour. Its position in `blocks` places it between achievements and the carousel.
+  - type: "carousel"
+    eyebrow: "Image carousel"
+    title: "Carousel block"
+    lead: "Use the carousel for fieldwork, project locations, lab work, community activities, or visual summaries. The carousel `eyebrow`, `title`, `lead`, `separator`, and slide `caption` fields are optional."
+    items:
+      - image: "/assets/sample-images/gallery-background.svg"
+        image_alt: "Abstract image representing a research landscape"
+        caption: "Slide captions are optional."
+      - image: "/assets/sample-images/gallery-about.svg"
+        image_alt: "Abstract image representing project information"
+        caption: "Add as many slides as the page needs."
+      - image: "/assets/sample-images/gallery-contact.svg"
+        image_alt: "Abstract image representing collaboration"
+        caption: "Always include useful image alt text."
+  - type: "standard"
+    id: "standard-section"
     title: "Standard text section"
     eyebrow: "Default"
     content: |
-      This is the default `landing_sections` style. Use it for ordinary explanatory content.
+      This is the default landing section style. Use it for ordinary explanatory content.
 
-      Required: `title`.
+      Required: `type: "standard"` and `title`.
 
-      Optional: `id`, `eyebrow`, `content`, `link_text`, `link_url`, `actions`, `image`, `image_alt`, `image_position`, `cards`, `style`, and `separator`.
+      Optional: `id`, `eyebrow`, `content`, `link_text`, `link_url`, `actions`, `image`, `image_alt`, `image_position`, `cards`, and `separator`.
     link_text: "Example text link"
     link_url: "#"
-  - title: "Section with image"
+  - type: "standard"
+    title: "Section with image"
     eyebrow: "Media"
     image: "/assets/sample-images/card-research-context.svg"
     image_alt: "Abstract research context image"
@@ -67,32 +74,34 @@ landing_sections:
       Add `image` to place media beside the text. The image sits on the right by default.
 
       Optional: set `image_position: "left"` to reverse the layout.
-  - title: "Image on the left"
+  - type: "standard"
+    title: "Image on the left"
     eyebrow: "Media"
     image_position: "left"
     image: "/assets/sample-images/card-project-setting.svg"
     image_alt: "Abstract project setting image"
     content: |
       This section uses `image_position: "left"`. The layout stacks cleanly on small screens.
-  - title: "Feature band"
+  - type: "feature"
+    title: "Feature band"
     eyebrow: "Style"
-    style: "feature"
     image: "/assets/sample-images/card-tree-kangaroo.svg"
     image_alt: "Abstract feature image"
     content: |
-      Use `style: "feature"` for a full-width pale background band. It uses `secondary_color` from `_config.yml`.
+      Use `type: "feature"` for a full-width background band. It uses `secondary_color` from `_config.yml`.
 
       Good for project summaries, research focus areas, or sections that need gentle emphasis.
-  - title: "Highlight band"
+  - type: "highlight"
+    title: "Highlight band"
     eyebrow: "Style"
-    style: "highlight"
     content: |
-      Use `style: "highlight"` for a strong full-width band using `primary_color`.
+      Use `type: "highlight"` for a strong full-width band using `primary_color`.
 
       Good for impacts, calls to action, key findings, or short statements that should stand apart.
     link_text: "Optional link"
     link_url: "#"
-  - title: "Card grid section"
+  - type: "standard"
+    title: "Card grid section"
     eyebrow: "Cards"
     cards:
       - title: "Card with image"
@@ -109,9 +118,9 @@ landing_sections:
         image: "/assets/sample-images/card-crocodile.svg"
         image_alt: "Estuarine crocodile"
         text: "Leave out `url` and `link_text` when the card is informational only."
-  - title: "Feature card grid"
+  - type: "feature"
+    title: "Feature card grid"
     eyebrow: "Cards"
-    style: "feature"
     cards:
       - title: "Project stream"
         text: "Feature bands can also contain cards."
@@ -125,7 +134,8 @@ landing_sections:
         text: "Keep card text short so the landing page remains easy to scan."
         link_text: "View activity"
         url: "#"
-  - title: "Section with action buttons"
+  - type: "standard"
+    title: "Section with action buttons"
     eyebrow: "Actions"
     content: |
       Add up to two optional `actions` to any landing section. The first action uses the primary colour and the second uses the secondary colour.
@@ -134,27 +144,29 @@ landing_sections:
         url: "/contact/"
       - label: "Browse samples"
         url: "/sample-content/"
-partner_organisations:
-  eyebrow: "Partners"
-  title: "Partner organisations block"
-  content: |
-    Use `partner_organisations` for funders, collaborators, institutions, and participating groups. This block is always displayed last when present.
-  items:
-    - name: "James Cook University"
-      logo: "/assets/images/jcu-logo-colour.svg"
-      url: "https://www.jcu.edu.au/"
-    - name: "Partner organisation"
-      logo: "/assets/sample-images/partner-placeholder.svg"
-    - name: "Rainforest research partner"
-      logo: "/assets/sample-images/partner-rainforest.svg"
-    - name: "Reef research partner"
-      logo: "/assets/sample-images/partner-reef.svg"
+  - type: "partner-logos"
+    eyebrow: "Partners"
+    title: "Partner organisations block"
+    content: |
+      Use `type: "partner-logos"` for funders, collaborators, institutions, and participating groups. Place it wherever it belongs in `blocks`.
+    items:
+      - name: "James Cook University"
+        logo: "/assets/images/jcu-logo-colour.svg"
+        url: "https://www.jcu.edu.au/"
+      - name: "Partner organisation"
+        logo: "/assets/sample-images/partner-placeholder.svg"
+      - name: "Rainforest research partner"
+        logo: "/assets/sample-images/partner-rainforest.svg"
+      - name: "Reef research partner"
+        logo: "/assets/sample-images/partner-reef.svg"
 ---
 
 ## How to use landing page blocks
 
-Create a page with `layout: full-width`, then add the front matter groups you need. You can omit whole groups if a full-width page does not need them.
+Create a page with `layout: full-width`, then add a `hero` and the ordered `blocks` the page needs.
 
-The main groups are `hero`, `achievements`, `carousel`, `landing_sections`, and `partner_organisations`.
+Each item in `blocks` needs a `type`: `achievements`, `carousel`, `standard`, `feature`, `highlight`, or `partner-logos`. The blocks render in list order.
 
-The only group most landing pages should always have is `hero`. Everything else is optional and can be added as the project grows.
+The `standard`, `feature`, and `highlight` types share the same content fields and differ only in presentation.
+
+The only block most landing pages should always have is `hero`. Everything in `blocks` is optional and can be added or reordered as the project grows.

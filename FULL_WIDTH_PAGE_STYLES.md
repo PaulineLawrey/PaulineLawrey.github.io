@@ -39,7 +39,18 @@ The hero follows `theme_settings.landing_block_separators` unless `hero.separato
 
 ## Main sections
 
-Use `landing_sections` for the main page areas. Recommended sections for research project sites are:
+Use the ordered `blocks` list for every block below the hero. Each item needs one of these types:
+
+- `achievements`: facts, outcomes, or milestones
+- `carousel`: a sequence of project images
+- `standard`: text, images, actions, or cards on the normal page background
+- `feature`: the same fields on a band using `secondary_color`
+- `highlight`: the same fields on a strong band using `primary_color`
+- `partner-logos`: organisation and funder logos
+
+Blocks render in list order, so authors can place a section before or after the carousel without using duplicate YAML keys.
+
+Recommended sections for research project sites are:
 
 - Our research
 - In the media
@@ -53,10 +64,10 @@ Use `landing_sections` for the main page areas. Recommended sections for researc
 Sections can contain text, an image, a text link, up to two action buttons, or a set of cards.
 
 ```yml
-landing_sections:
-  - title: "Our research"
+blocks:
+  - type: "feature"
+    title: "Our research"
     eyebrow: "Focus"
-    style: "feature"
     image: "/assets/sample-images/card-research-context.svg"
     image_alt: "Abstract research context image"
     content: |
@@ -71,59 +82,58 @@ landing_sections:
 
 The optional `actions` list supports up to two buttons. The first uses the primary colour and the second uses the secondary colour. Use `link_text` and `link_url` instead when a section only needs a quiet text link.
 
-Set `separator: true` on any item in `landing_sections` to add an accent separator bar after that section.
+Set `separator: true` on any block to add an accent separator bar after it.
 
 ## Achievements
 
-Use `achievements` for three prominent facts, outcomes, or milestones. Each tile can use `value`, `icon`, or `image`.
+Use `type: "achievements"` for three prominent facts, outcomes, or milestones. Each tile can use `value`, `icon`, or `image`.
 
 ```yml
-achievements:
-  title: "Progress at a glance"
-  separator: true
-  items:
-    - value: "12"
-      label: "Active studies"
-      text: "Research activities underway with communities and partners."
-    - icon: "P"
-      label: "Publications"
-      text: "Papers, reports, and datasets from the project."
-    - image: "/assets/sample-images/card-green-turtle.svg"
-      image_alt: "Green turtle"
-      label: "Field sites"
-      text: "Places where project activities are happening."
+blocks:
+  - type: "achievements"
+    title: "Progress at a glance"
+    separator: true
+    items:
+      - value: "12"
+        label: "Active studies"
+        text: "Research activities underway with communities and partners."
+      - icon: "P"
+        label: "Publications"
+        text: "Papers, reports, and datasets from the project."
+      - image: "/assets/sample-images/card-green-turtle.svg"
+        image_alt: "Green turtle"
+        label: "Field sites"
+        text: "Places where project activities are happening."
 ```
-
-Set `achievements.separator: true` to add an accent separator bar after the achievements block.
 
 ## Image carousel
 
-Use `carousel` for a short sequence of project images. `eyebrow`, `title`, and `lead` are optional.
+Use `type: "carousel"` for a short sequence of project images. `eyebrow`, `title`, and `lead` are optional.
 
 ```yml
-carousel:
-  eyebrow: "Gallery"
-  title: "Research in context"
-  lead: "Use the carousel for fieldwork, project locations, lab work, or community activities."
-  separator: true
-  items:
-    - image: "/assets/sample-images/gallery-background.svg"
-      image_alt: "Abstract background image"
-      caption: "Project context and research setting"
-    - image: "/assets/sample-images/gallery-about.svg"
-      image_alt: "Abstract project information image"
-      caption: "Research activities and project updates"
+blocks:
+  - type: "carousel"
+    eyebrow: "Gallery"
+    title: "Research in context"
+    lead: "Use the carousel for fieldwork, project locations, lab work, or community activities."
+    separator: true
+    items:
+      - image: "/assets/sample-images/gallery-background.svg"
+        image_alt: "Abstract background image"
+        caption: "Project context and research setting"
+      - image: "/assets/sample-images/gallery-about.svg"
+        image_alt: "Abstract project information image"
+        caption: "Research activities and project updates"
 ```
-
-Set `carousel.separator: true` to add an accent separator bar after the carousel.
 
 ## Card sections
 
 Cards work well for media items, projects, news, people, or impact stories.
 
 ```yml
-landing_sections:
-  - title: "Latest news"
+blocks:
+  - type: "standard"
+    title: "Latest news"
     eyebrow: "Updates"
     cards:
       - title: "Project milestone"
@@ -134,17 +144,18 @@ landing_sections:
 
 ## Partner organisations
 
-Use `partner_organisations` for funders, collaborators, and institutions. This section is always displayed last on the landing page when it is present.
+Use `type: "partner-logos"` for funders, collaborators, and institutions. Its position in `blocks` determines where it is displayed.
 
 ```yml
-partner_organisations:
-  title: "Partner organisations"
-  content: |
-    Recognise the organisations that make the project possible.
-  items:
-    - name: "James Cook University"
-      logo: "/assets/images/jcu-logo-colour.svg"
-      url: "https://www.jcu.edu.au/"
+blocks:
+  - type: "partner-logos"
+    title: "Partner organisations"
+    content: |
+      Recognise the organisations that make the project possible.
+    items:
+      - name: "James Cook University"
+        logo: "/assets/images/jcu-logo-colour.svg"
+        url: "https://www.jcu.edu.au/"
 ```
 
 ## Style options

@@ -1,0 +1,38 @@
+{% assign block = include.block %}
+{% assign block_separator = include.default_separator %}
+{% unless block.separator == nil %}
+  {% assign block_separator = block.separator %}
+{% endunless %}
+{% if block.id %}
+  {% assign block_id = block.id %}
+{% else %}
+  {% capture block_id %}landing-achievements-{{ include.index }}{% endcapture %}
+{% endif %}
+
+<section class="landing-section landing-achievements{% if block_separator %} landing-block--separator{% endif %}" aria-labelledby="{{ block_id }}">
+  <div class="landing-section-header">
+    <p class="eyebrow">{{ block.eyebrow | default: "Achievements" }}</p>
+    <h2 id="{{ block_id }}">{{ block.title | default: "Achievements" }}</h2>
+    {% if block.lead %}
+      <p>{{ block.lead }}</p>
+    {% endif %}
+  </div>
+  <div class="landing-achievement-grid">
+    {% for item in block.items %}
+      <article class="landing-achievement">
+        {% if item.image %}
+          <img src="{{ item.image | relative_url }}" alt="{{ item.image_alt | default: '' }}">
+        {% elsif item.icon %}
+          <span class="landing-achievement-icon" aria-hidden="true">{{ item.icon }}</span>
+        {% endif %}
+        {% if item.value %}
+          <strong>{{ item.value }}</strong>
+        {% endif %}
+        <h3>{{ item.label }}</h3>
+        {% if item.text %}
+          <p>{{ item.text }}</p>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</section>

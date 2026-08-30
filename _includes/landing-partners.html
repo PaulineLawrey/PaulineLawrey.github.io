@@ -1,0 +1,35 @@
+{% assign block = include.block %}
+{% assign block_separator = include.default_separator %}
+{% unless block.separator == nil %}
+  {% assign block_separator = block.separator %}
+{% endunless %}
+{% if block.id %}
+  {% assign block_id = block.id %}
+{% else %}
+  {% capture block_id %}landing-partners-{{ include.index }}{% endcapture %}
+{% endif %}
+
+<section class="landing-section landing-partners{% if block_separator %} landing-block--separator{% endif %}" aria-labelledby="{{ block_id }}">
+  <div class="landing-section-header">
+    <p class="eyebrow">{{ block.eyebrow | default: "Partners" }}</p>
+    <h2 id="{{ block_id }}">{{ block.title | default: "Partner organisations" }}</h2>
+    {% if block.content %}
+      <div class="prose">
+        {{ block.content | markdownify }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="partner-logos">
+    {% for partner in block.items %}
+      {% if partner.url %}
+        <a class="partner-logo" href="{{ partner.url }}" aria-label="{{ partner.name }}">
+          <img src="{{ partner.logo | relative_url }}" alt="{{ partner.name }}">
+        </a>
+      {% else %}
+        <div class="partner-logo">
+          <img src="{{ partner.logo | relative_url }}" alt="{{ partner.name }}">
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>

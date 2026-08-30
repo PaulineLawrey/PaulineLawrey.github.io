@@ -58,166 +58,20 @@ layout: default
     </section>
   {% endif %}
 
-  {% if page.achievements %}
-    {% assign achievements_separator = landing_block_separators %}
-    {% unless page.achievements.separator == nil %}
-      {% assign achievements_separator = page.achievements.separator %}
-    {% endunless %}
-    <section class="landing-section landing-achievements{% if achievements_separator %} landing-block--separator{% endif %}" aria-labelledby="landing-achievements-title">
-      <div class="landing-section-header">
-        <p class="eyebrow">{{ page.achievements.eyebrow | default: "Achievements" }}</p>
-        <h2 id="landing-achievements-title">{{ page.achievements.title | default: "Achievements" }}</h2>
-        {% if page.achievements.lead %}
-          <p>{{ page.achievements.lead }}</p>
-        {% endif %}
-      </div>
-      <div class="landing-achievement-grid">
-        {% for item in page.achievements.items %}
-          <article class="landing-achievement">
-            {% if item.image %}
-              <img src="{{ item.image | relative_url }}" alt="{{ item.image_alt | default: '' }}">
-            {% elsif item.icon %}
-              <span class="landing-achievement-icon" aria-hidden="true">{{ item.icon }}</span>
-            {% endif %}
-            {% if item.value %}
-              <strong>{{ item.value }}</strong>
-            {% endif %}
-            <h3>{{ item.label }}</h3>
-            {% if item.text %}
-              <p>{{ item.text }}</p>
-            {% endif %}
-          </article>
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
-
-  {% if page.carousel %}
-    {% assign carousel_separator = landing_block_separators %}
-    {% unless page.carousel.separator == nil %}
-      {% assign carousel_separator = page.carousel.separator %}
-    {% endunless %}
-    <section class="landing-section landing-carousel{% if carousel_separator %} landing-block--separator{% endif %}" aria-labelledby="landing-carousel-title">
-      <div class="landing-section-header">
-        {% if page.carousel.eyebrow %}
-          <p class="eyebrow">{{ page.carousel.eyebrow }}</p>
-        {% endif %}
-        {% if page.carousel.title %}
-          <h2 id="landing-carousel-title">{{ page.carousel.title }}</h2>
-        {% endif %}
-        {% if page.carousel.lead %}
-          <p>{{ page.carousel.lead }}</p>
-        {% endif %}
-      </div>
-      <div class="landing-carousel-frame" data-carousel>
-        <div class="landing-carousel-track">
-          {% for item in page.carousel.items %}
-            <figure class="landing-carousel-slide{% if forloop.first %} is-active{% endif %}">
-              <img src="{{ item.image | relative_url }}" alt="{{ item.image_alt | default: '' }}">
-              {% if item.caption %}
-                <figcaption>{{ item.caption }}</figcaption>
-              {% endif %}
-            </figure>
-          {% endfor %}
-        </div>
-        <div class="landing-carousel-controls" aria-label="Image carousel controls">
-          <button type="button" data-carousel-prev aria-label="Previous image">‹</button>
-          <div class="landing-carousel-dots">
-            {% for item in page.carousel.items %}
-              <button type="button" data-carousel-dot="{{ forloop.index0 }}" aria-label="Show image {{ forloop.index }}"{% if forloop.first %} aria-current="true"{% endif %}></button>
-            {% endfor %}
-          </div>
-          <button type="button" data-carousel-next aria-label="Next image">›</button>
-        </div>
-      </div>
-    </section>
-  {% endif %}
-
-  {% for section in page.landing_sections %}
-    {% assign section_separator = landing_block_separators %}
-    {% unless section.separator == nil %}
-      {% assign section_separator = section.separator %}
-    {% endunless %}
-    <section{% if section.id %} id="{{ section.id }}"{% endif %} class="landing-section landing-section--{{ section.style | default: 'standard' }}{% if section.image %} landing-section--with-media{% endif %}{% if section.image_position == 'left' %} landing-section--image-left{% endif %}{% if section_separator %} landing-block--separator{% endif %}">
-      <div class="landing-section-body">
-        {% if section.eyebrow %}
-          <p class="eyebrow">{{ section.eyebrow }}</p>
-        {% endif %}
-        <h2>{{ section.title }}</h2>
-        {% if section.content %}
-          <div class="prose">
-            {{ section.content | markdownify }}
-          </div>
-        {% endif %}
-        {% if section.link_url and section.link_text %}
-          <a class="landing-text-link" href="{{ section.link_url | relative_url }}">{{ section.link_text }}</a>
-        {% endif %}
-        {% if section.actions %}
-          <div class="landing-section-actions">
-            {% for action in section.actions limit: 2 %}
-              <a class="landing-button{% if forloop.first %} landing-button--primary{% else %} landing-button--secondary{% endif %}" href="{{ action.url | relative_url }}">{{ action.label }}</a>
-            {% endfor %}
-          </div>
-        {% endif %}
-      </div>
-
-      {% if section.image %}
-        <figure class="landing-section-media">
-          <img src="{{ section.image | relative_url }}" alt="{{ section.image_alt | default: '' }}">
-        </figure>
-      {% endif %}
-
-      {% if section.cards %}
-        <div class="landing-card-grid">
-          {% for card in section.cards %}
-            <article class="landing-card">
-              {% if card.image %}
-                <img src="{{ card.image | relative_url }}" alt="{{ card.image_alt | default: '' }}">
-              {% endif %}
-              <div class="landing-card-body">
-                <h3>{{ card.title }}</h3>
-                {% if card.text %}
-                  <p>{{ card.text }}</p>
-                {% endif %}
-                {% if card.url and card.link_text %}
-                  <a href="{{ card.url | relative_url }}">{{ card.link_text }}</a>
-                {% endif %}
-              </div>
-            </article>
-          {% endfor %}
-        </div>
-      {% endif %}
-    </section>
+  {% for block in page.blocks %}
+    {% case block.type %}
+      {% when "achievements" %}
+        {% include landing-achievements.html block=block index=forloop.index default_separator=landing_block_separators %}
+      {% when "carousel" %}
+        {% include landing-carousel.html block=block index=forloop.index default_separator=landing_block_separators %}
+      {% when "standard" %}
+        {% include landing-section.html section=block style="standard" default_separator=landing_block_separators %}
+      {% when "feature" %}
+        {% include landing-section.html section=block style="feature" default_separator=landing_block_separators %}
+      {% when "highlight" %}
+        {% include landing-section.html section=block style="highlight" default_separator=landing_block_separators %}
+      {% when "partner-logos" %}
+        {% include landing-partners.html block=block index=forloop.index default_separator=landing_block_separators %}
+    {% endcase %}
   {% endfor %}
-
-  {% if page.partner_organisations %}
-    {% assign partners_separator = landing_block_separators %}
-    {% unless page.partner_organisations.separator == nil %}
-      {% assign partners_separator = page.partner_organisations.separator %}
-    {% endunless %}
-    <section class="landing-section landing-partners{% if partners_separator %} landing-block--separator{% endif %}" aria-labelledby="landing-partners-title">
-      <div class="landing-section-header">
-        <p class="eyebrow">{{ page.partner_organisations.eyebrow | default: "Partners" }}</p>
-        <h2 id="landing-partners-title">{{ page.partner_organisations.title | default: "Partner organisations" }}</h2>
-        {% if page.partner_organisations.content %}
-          <div class="prose">
-            {{ page.partner_organisations.content | markdownify }}
-          </div>
-        {% endif %}
-      </div>
-      <div class="partner-logos">
-        {% for partner in page.partner_organisations.items %}
-          {% if partner.url %}
-            <a class="partner-logo" href="{{ partner.url }}" aria-label="{{ partner.name }}">
-              <img src="{{ partner.logo | relative_url }}" alt="{{ partner.name }}">
-            </a>
-          {% else %}
-            <div class="partner-logo">
-              <img src="{{ partner.logo | relative_url }}" alt="{{ partner.name }}">
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
 </article>

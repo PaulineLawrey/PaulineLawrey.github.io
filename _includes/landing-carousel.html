@@ -1,0 +1,45 @@
+{% assign block = include.block %}
+{% assign block_separator = include.default_separator %}
+{% unless block.separator == nil %}
+  {% assign block_separator = block.separator %}
+{% endunless %}
+{% if block.id %}
+  {% assign block_id = block.id %}
+{% else %}
+  {% capture block_id %}landing-carousel-{{ include.index }}{% endcapture %}
+{% endif %}
+
+<section class="landing-section landing-carousel{% if block_separator %} landing-block--separator{% endif %}" aria-labelledby="{{ block_id }}">
+  <div class="landing-section-header">
+    {% if block.eyebrow %}
+      <p class="eyebrow">{{ block.eyebrow }}</p>
+    {% endif %}
+    {% if block.title %}
+      <h2 id="{{ block_id }}">{{ block.title }}</h2>
+    {% endif %}
+    {% if block.lead %}
+      <p>{{ block.lead }}</p>
+    {% endif %}
+  </div>
+  <div class="landing-carousel-frame" data-carousel>
+    <div class="landing-carousel-track">
+      {% for item in block.items %}
+        <figure class="landing-carousel-slide{% if forloop.first %} is-active{% endif %}">
+          <img src="{{ item.image | relative_url }}" alt="{{ item.image_alt | default: '' }}">
+          {% if item.caption %}
+            <figcaption>{{ item.caption }}</figcaption>
+          {% endif %}
+        </figure>
+      {% endfor %}
+    </div>
+    <div class="landing-carousel-controls" aria-label="Image carousel controls">
+      <button type="button" data-carousel-prev aria-label="Previous image">‹</button>
+      <div class="landing-carousel-dots">
+        {% for item in block.items %}
+          <button type="button" data-carousel-dot="{{ forloop.index0 }}" aria-label="Show image {{ forloop.index }}"{% if forloop.first %} aria-current="true"{% endif %}></button>
+        {% endfor %}
+      </div>
+      <button type="button" data-carousel-next aria-label="Next image">›</button>
+    </div>
+  </div>
+</section>
