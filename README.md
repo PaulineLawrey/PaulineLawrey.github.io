@@ -174,7 +174,7 @@ permalink: /catalog/
 ---
 ```
 
-The layout loads the Material Symbols stylesheet, the catalogue stylesheet, and the catalogue script, and renders the required `<div id="jcudl-catalog">` element. The local asset locations can be overridden when needed:
+The layout loads the Material Symbols stylesheet, the catalogue stylesheet, and the catalogue script, and renders the required `<div id="jcudlc">` element. The local asset locations can be overridden when needed:
 
 ```yml
 jcudl_stylesheet: /catalog/jcudl-style.css
